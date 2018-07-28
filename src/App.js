@@ -16,12 +16,14 @@ class App extends Component {
 
   search() {
     const API_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
+
     fetch(`${API_URL}${this.state.query}`)
       .then(response => response.json())
       .then(json => {
         let {items} = json;
         this.setState({items})
-      }); // TODO: Add a catch method here in case the API call fails
+      })
+      .catch(error => console.log(error));
   }
 
   render() {
