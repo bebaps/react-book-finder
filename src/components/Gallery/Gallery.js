@@ -1,12 +1,12 @@
 import React from 'react';
-import book from '../images/book.svg';
+import book from '../../assets/images/book.svg';
 import './Gallery.css';
 
-const Gallery = (props) => {
+const Gallery = props => {
   return (
     <div>{
       props.items.map( (item, index) => {
-        let { title, imageLinks, infoLink } = item.volumeInfo;
+        const { title, imageLinks, infoLink } = item.volumeInfo;
         return (
           <a
             key={index}
@@ -24,10 +24,10 @@ const Gallery = (props) => {
               {title}
             </header>
           </a>
-        )
+        );
       })
     }</div>
-  )
+  );
 }
 
 export default Gallery;

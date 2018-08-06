@@ -1,39 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from '../../assets/images/logo.svg';
 import './App.css';
-import './util.css';
 import { FormGroup, FormControl, InputGroup, Glyphicon } from 'react-bootstrap';
-import Gallery from './components/Gallery.js';
+import Gallery from '../../components/Gallery/Gallery';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      query: '',
-      items: []
-    };
-  }
+  state = {
+    query: '',
+    items: []
+  };
 
-  search() {
+  search = () => {
     const API_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
     fetch(`${API_URL}${this.state.query}`)
       .then(response => response.json())
       .then(json => {
-        let {items} = json;
+        const {items} = json;
         this.setState({items})
       })
       .catch(error => console.log(error));
   }
 
   render() {
+    const style = {
+      padding: '2em 0'
+    }
+
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Book Finder</h1>
+          <h1 className="App-title">React Book Finder</h1>
         </header>
-        <div className="container main-content">
+        <div className="container" style={style}>
           <FormGroup>
             <InputGroup>
               <FormControl type="text" placeholder="Search for a book"
